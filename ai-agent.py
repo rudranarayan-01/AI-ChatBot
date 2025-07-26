@@ -12,6 +12,12 @@ if not GROQ_API_KEY or not TAVILY_API_KEY or not OPENAI_API_KEY:
 
 # Step 2: Setting up LLMS
 from langchain_groq import Groq
-from langchain_openai import OpenAI
+from langchain_openai import ChatOpenAI
 from langchain_community.tools.tavily_search import TavilySearchResults
+
+openai_llm = ChatOpenAI(model="gpt-4o-mini") 
+groq_llm = Groq(model="llama-3.3-70b-versatile")
+search_tools = TavilySearchResults(max_results=2)
+
+# Step 3: Setting up AI Agnet with search tools functionality
 
