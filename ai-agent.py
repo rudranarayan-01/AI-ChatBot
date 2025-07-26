@@ -1,6 +1,7 @@
 import dotenv
 
 GROQ_API_KEY = dotenv.get_key(".env", "GROQ_API_KEY")
-if not GROQ_API_KEY:
-    raise ValueError("GROQ_API_KEY environment variable is not set.")
+TAVILY_API_KEY = dotenv.get_key(".env", "TAVILY_API_KEY")
+OPENAI_API_KEY = dotenv.get_key(".env", "OPENAI_API_KEY")
+
 
