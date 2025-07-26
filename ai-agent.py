@@ -16,7 +16,7 @@ from langchain_openai import ChatOpenAI
 from langchain_community.tools.tavily_search import TavilySearchResults
 
 openai_llm = ChatOpenAI(model="gpt-4o-mini") 
-groq_llm = ChatGroq(model="llama-3.3-70b-versatile")
+groq_llm = ChatGroq(model="llama-3.3-70b-versatile", api_key=GROQ_API_KEY)
 search_tools = TavilySearchResults(max_results=2)
 
 # Step 3: Setting up AI Agnet with search tools functionality
