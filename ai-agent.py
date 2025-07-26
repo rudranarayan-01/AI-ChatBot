@@ -25,7 +25,7 @@ from langgraph.prebuilt import create_react_agent
 system_prompt = "Act as a helpful AI smart and friendly Chatbot that can search the web for information. You can use the Tavily search tool to find answers to questions that you don't know."
 
 agent = create_react_agent(
-    llm=groq_llm,
+    model=groq_llm,
     tools=[search_tools],
     state_modifier = system_prompt,
 )
