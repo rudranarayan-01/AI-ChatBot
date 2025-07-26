@@ -11,3 +11,7 @@ if not GROQ_API_KEY or not TAVILY_API_KEY or not OPENAI_API_KEY:
     raise ValueError("API keys are not set in the .env file. Please set GROQ_API_KEY, TAVILY_API_KEY, and OPENAI_API_KEY.")
 
 # Step 2: Setting up LLMS
+from langchain_groq import Groq
+from langchain_openai import OpenAI
+from langchain_community.tools.tavily_search import TavilySearchResults
+
