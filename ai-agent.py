@@ -34,3 +34,6 @@ query = "Tell me about the trends in crypto market"
 state = {"message": query}
 respose = agent.invoke(state)
 print(respose)
+
+# Step 4: Testing the agent with a query
+
