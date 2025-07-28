@@ -28,7 +28,7 @@ agent = create_react_agent(
 )
 
 
-query = "Tell me about the trending odia movie"
+query = "Tell me about the latest advancements in AI technology."
 
 state = {
     "messages": [
