@@ -23,5 +23,10 @@ def chat(request: RequestState):
     """API endpoint to interact with chatbot using langgraph and search tools.
     It dinamically selects the model based on the request.
     """
+    
+    if request.model_name not in ALLOWED_MODEL_NAMES:
+        raise ValueError(f"Model {request.model_name} is not allowed. Allowed models are: {ALLOWED_MODEL_NAMES}")
+    
+    # Create AI agnet for the request
 
 # Step 3: Run app and explore Swagger UI docs
