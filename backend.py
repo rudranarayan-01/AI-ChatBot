@@ -39,3 +39,8 @@ def chat(request: RequestState):
     return response
 
 # Step 3: Run app and explore Swagger UI docs
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="127.0.1", port=8000)
+    # Visit http://
