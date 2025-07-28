@@ -1,11 +1,12 @@
 # setp 1: Setup pydantic model (Schema validation)
 from pydantic import BaseModel
 from typing import List
+from ai-agnet import get_response_from_AI_agent
 
 class RequestState(BaseModel):
     model_name: str
     model_provider: str
-    system_provider:str
+    system_prompt:str
     messages: List[str]
     allow_search: bool
     
@@ -28,5 +29,13 @@ def chat(request: RequestState):
         raise ValueError(f"Model {request.model_name} is not allowed. Allowed models are: {ALLOWED_MODEL_NAMES}")
     
     # Create AI agnet for the request
+    response = get_response_from_AI_agent(
+        llm_id=request.model_name,
+        query=request.messages,  # Assuming the last message is the user query
+        allow_search=request.allow_search,
+        system_prompt=request.system_prompt,
+        provider=request.model_provider
+    )
+    return response
 
 # Step 3: Run app and explore Swagger UI docs

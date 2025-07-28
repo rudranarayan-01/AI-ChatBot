@@ -22,21 +22,29 @@ search_tools = TavilySearch(max_results=2)
 
 system_prompt = "Act as an AI chatbot who is smart and friendly"
 
-agent = create_react_agent(
-    model=groq_llm,
-    tools=[search_tools],
-)
+def get_response_from_AI_agent(llm_id, query, allow_search, system_prompt, provider):  
+    if provider == "Groq":
+        llm = ChatGroq(model=llm_id)
+    elif provider == "OpenAI":
+        llm = ChatOpenAI(model=llm_id)
+    else:
+        raise ValueError(f"Unsupported provider: {provider}")
+        
+    tools = [TavilySearch(max_results=2)] if allow_search else []
+    
+    agent = create_react_agent(
+        model=llm,
+        tools=tools,   
+    )
 
-
-query = "Tell me about the latest advancements in AI technology."
-
-state = {
+    state = {
     "messages": [
         {"role": "system", "content": system_prompt},
         {"role": "user", "content":query}
-    ]
-}
-response = agent.invoke(state)
-messages = response.get("messages")
-ai_messages = [message.content for message in messages if isinstance(message, AIMessage)]
-print(ai_messages[-1])
+        ]
+    }
+    response = agent.invoke(state)
+    messages = response.get("messages")
+    ai_messages = [message.content for message in messages if isinstance(message, AIMessage)]
+    return ai_messages[-1]
+    
