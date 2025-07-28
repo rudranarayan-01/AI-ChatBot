@@ -1,7 +1,7 @@
 # setp 1: Setup pydantic model (Schema validation)
 from pydantic import BaseModel
 from typing import List
-from ai-agnet import get_response_from_AI_agent
+from ai_agent import get_response_from_AI_agent 
 
 class RequestState(BaseModel):
     model_name: str
