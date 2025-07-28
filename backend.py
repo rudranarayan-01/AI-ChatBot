@@ -1,4 +1,8 @@
 # setp 1: Setup pydantic model (Schema validation)
+from pydantic import BaseModel
+
+class RequestTest(BaseModel):
+    query: str
 
 # Setp 2: Setup AI agent from frontend requests
 
