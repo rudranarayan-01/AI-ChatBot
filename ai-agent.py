@@ -12,13 +12,13 @@ if not GROQ_API_KEY or not TAVILY_API_KEY or not OPENAI_API_KEY:
 
 from langchain_groq import ChatGroq
 from langchain_openai import ChatOpenAI
-from langchain_community.tools.tavily_search import TavilySearchResults
+from langchain_tavily import TavilySearch
 from langgraph.prebuilt import create_react_agent
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 
 openai_llm = ChatOpenAI(model="gpt-4o-mini", api_key=OPENAI_API_KEY)
 groq_llm = ChatGroq(model="llama3-70b-8192", api_key=GROQ_API_KEY)
-search_tools = TavilySearchResults(max_results=2)
+search_tools = TavilySearch(max_results=2)
 
 system_prompt = "Act as an AI chatbot who is smart and friendly"
 
@@ -28,7 +28,7 @@ agent = create_react_agent(
 )
 
 
-query = "Tell me about the trends in crypto market"
+query = "Tell me about the trending odia movie"
 
 state = {
     "messages": [
