@@ -28,14 +28,14 @@ def chat(request: RequestState):
     if request.model_name not in ALLOWED_MODEL_NAMES:
         raise ValueError(f"Model {request.model_name} is not allowed. Allowed models are: {ALLOWED_MODEL_NAMES}")
     
+    llm_id = request.model_name
+    query = request.messages
+    allow_search = request.allow_search
+    system_prompt = request.system_prompt
+    provider = request.model_provider
+    
     # Create AI agnet for the request
-    response = get_response_from_AI_agent(
-        llm_id=request.model_name,
-        query=request.messages,  # Assuming the last message is the user query
-        allow_search=request.allow_search,
-        system_prompt=request.system_prompt,
-        provider=request.model_provider
-    )
+    response = get_response_from_AI_agent(llm_id, query, allow_search, system_prompt, provider)
     return response
 
 # Step 3: Run app and explore Swagger UI docs
