@@ -26,7 +26,7 @@ def chat(request: RequestState):
     """
     
     if request.model_name not in ALLOWED_MODEL_NAMES:
-        raise ValueError(f"Model {request.model_name} is not allowed. Allowed models are: {ALLOWED_MODEL_NAMES}")
+        return {"error": "Model not allowed. Please select a valid model."}
     
     llm_id = request.model_name
     query = request.messages
