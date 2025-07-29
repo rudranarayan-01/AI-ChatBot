@@ -24,9 +24,9 @@ system_prompt = "Act as an AI chatbot who is smart and friendly"
 
 def get_response_from_AI_agent(llm_id, query, allow_search, system_prompt, provider):  
     if provider == "Groq":
-        llm = ChatGroq(model=llm_id)
+        llm = ChatGroq(model=llm_id, api_key=GROQ_API_KEY)
     elif provider == "OpenAI":
-        llm = ChatOpenAI(model=llm_id)
+        llm = ChatOpenAI(model=llm_id, api_key=OPENAI_API_KEY)
     else:
         raise ValueError(f"Unsupported provider: {provider}")
         
@@ -38,13 +38,14 @@ def get_response_from_AI_agent(llm_id, query, allow_search, system_prompt, provi
     )
 
     state = {
-    "messages": [
-        {"role": "system", "content": system_prompt},
-        {"role": "user", "content":query}
+        "messages": [
+            {"role": "system", "content": system_prompt},
+            *[{"role": "user", "content": msg} for msg in query]
         ]
     }
+
     response = agent.invoke(state)
     messages = response.get("messages")
     ai_messages = [message.content for message in messages if isinstance(message, AIMessage)]
-    return ai_messages[-1]
-    
+    return ai_messages[-1] if ai_messages else "No AI response received."
+

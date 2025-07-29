@@ -9,13 +9,16 @@ class RequestState(BaseModel):
     system_prompt:str
     messages: List[str]
     allow_search: bool
+    model_config = {
+        "protected_namespaces":()
+    }
     
     
 
 # Setp 2: Setup AI agent from frontend requests
 from fastapi import FastAPI
 
-ALLOWED_MODEL_NAMES = ["gpt-4o-mini", "llama3-70b-8192","mixtral-8x7b-32768", "lamma3.3-70b-versatile"]
+ALLOWED_MODEL_NAMES = ["gpt-4o-mini", "llama3-70b-8192","mixtral-8x7b-32768", "llama3.3-70b-versatile"]
 
 app = FastAPI(title="AI Agent API", description="API for AI Agent using LangChain and Groq", version="1.0.0")
 @app.post("/chat")
@@ -44,5 +47,5 @@ def chat(request: RequestState):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="127.0.1", port=8000)
-    # Visit http://
+    uvicorn.run(app, host="127.0.0.1", port=8000)
+    # Visit http://127.0.0.1:8000/docs for Swagger UI documentation API testing like POSTMAN
