@@ -1,1 +1,1 @@
-# Step 1: Setup UI with streamlit(model provider, model)
+# Step 1: Setup UI with streamlit(model provider, model, system prompt, query)
