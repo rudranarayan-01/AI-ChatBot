@@ -8,4 +8,6 @@ st.write("Create and interact with AI agents.")
 
 system_prompt = st.text_area("Define your AI agent", height=70,placeholder= "You are a helpful AI assistant.")
 
+MODEL_NAMES_GROQ = ["llama-3.3-70b-versatile"]
+
 # Step 2: Connect backend with URL
