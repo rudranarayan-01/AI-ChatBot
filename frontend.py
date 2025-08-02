@@ -1,4 +1,4 @@
-# Step 1: Setup UI with streamlit(model provider, model, system prompt, query)
+# Step 1: Setup UI with streamlit(model provider, model, websearch, system prompt, query)
 import streamlit as st
 
 st.set_page_config(page_title="AI Agent", page_icon=":robot_face:", layout="wide")
@@ -13,6 +13,14 @@ MODEL_NAMES_OPENAI = ["gpt-4o-mini"]
 
 provider = st.radio("Select model provider", ("Groq", "OpenAI"), horizontal=True)
 
+if provider == "Groq":
+    selected_model = st.selectbox("Select model", MODEL_NAMES_GROQ)
+elif provider == "OpenAI":
+    selected_model = st.selectbox("Select model", MODEL_NAMES_OPENAI, index=0)
 
+
+alow_web_search = st.checkbox("Allow web search", value=True)
+
+user_query = st.text_area("Enter your query", placeholder="What is the capital of France?")
 
 # Step 2: Connect backend with URL
