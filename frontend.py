@@ -25,6 +25,9 @@ user_query = st.text_area("Enter your query", placeholder="What is the capital o
 
 if st.button("Ask Agent!"):
     # get response from backend and show
-    pass
+    if user_query.strip():
+        response = "This is a placeholder response from the backend."
+        st.subheader("Response")
+        st.markdown(f'**Final Response:** {response}')
 
 # Step 2: Connect backend with URL
