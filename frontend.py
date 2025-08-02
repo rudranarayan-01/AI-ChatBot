@@ -43,11 +43,7 @@ if st.button("Ask Agent!"):
             st.markdown(f'**Final Response:** {data["response"]}')
         else:
             st.error("No response received from the agent. Try the same with this model: llama3-70b-8192")
-    
-    # get response from backend and show
-    if user_query.strip():
-        response = "This is a placeholder response from the backend."
-        st.subheader("Response")
-        st.markdown(f'**Final Response:** {response}')
+    else:
+        st.error(f"Error: {response.status_code} - {response.json().get('error', 'Unknown error')}")
 
 
