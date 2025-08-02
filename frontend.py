@@ -23,4 +23,8 @@ alow_web_search = st.checkbox("Allow web search", value=True)
 
 user_query = st.text_area("Enter your query", placeholder="What is the capital of France?")
 
+if st.button("Ask Agent!"):
+    # get response from backend and show
+    pass
+
 # Step 2: Connect backend with URL
