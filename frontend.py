@@ -11,4 +11,6 @@ system_prompt = st.text_area("Define your AI agent", height=70,placeholder= "You
 MODEL_NAMES_GROQ = ["llama-3.3-70b-versatile","mixtral-8x7b-32768"]
 MODEL_NAMES_OPENAI = ["gpt-4o-mini"]
 
+provider = st.radio("Select model provider", ("Groq", "OpenAI"), horizontal=True)
+
 # Step 2: Connect backend with URL
