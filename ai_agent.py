@@ -1,5 +1,3 @@
-# ai_agent.py
-
 from dotenv import load_dotenv
 import os
 
@@ -18,21 +16,18 @@ from langchain_tavily import TavilySearch
 from langgraph.prebuilt import create_react_agent
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 
-def get_response_from_AI_agent(llm_id, query, allow_search, system_prompt, provider):  
-    # Select model
+
+def get_response_from_AI_agent(llm_id, query, allow_search, system_prompt, provider):
     if provider == "Groq":
         llm = ChatGroq(model=llm_id, api_key=GROQ_API_KEY)
     elif provider == "OpenAI":
         llm = ChatOpenAI(model=llm_id, api_key=OPENAI_API_KEY)
     else:
         raise ValueError(f"Unsupported provider: {provider}")
-        
-    tools = [TavilySearch(api_key=TAVILY_API_KEY, max_results=2)] if allow_search else []
 
-    # Create LangGraph agent
+    tools = [TavilySearch(api_key=TAVILY_API_KEY, max_results=2)] if allow_search else []
     agent = create_react_agent(model=llm, tools=tools)
 
-    # Convert input messages to LangChain format
     state = {
         "messages": [
             SystemMessage(content=system_prompt),
